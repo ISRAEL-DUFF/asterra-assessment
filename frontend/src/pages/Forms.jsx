@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
-const API_URL = 'http://localhost:3001/api';
+import { API_URL } from '../config';
 
 export default function Forms() {
-  const [view, setView] = useState('forms');
   const [users, setUsers] = useState([]);
   
   // Form states
@@ -30,25 +28,8 @@ export default function Forms() {
     }
   };
 
-  // Fetch users with hobbies for index page
-  const fetchUsersHobbies = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${API_URL}/users-hobbies`);
-      const data = await response.json();
-      setUsersHobbies(data);
-    } catch (error) {
-      alert('Error fetching data: ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     fetchUsers();
-    // if (view === 'index') {
-    //   fetchUsersHobbies();
-    // }
   }, []);
 
   // Handle user form submission
