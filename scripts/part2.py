@@ -48,7 +48,3 @@ plt.savefig('raster_output.png', dpi=150, bbox_inches='tight')
 print("Image saved as 'raster_output.png'")
 
 plt.show()
-
-# Optional: Save as different formats
-# plt.savefig('raster_output.jpg', dpi=150, bbox_inches='tight')
-# plt.savefig('raster_output.tiff', dpi=150, bbox_inches='tight')
