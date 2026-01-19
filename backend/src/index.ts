@@ -14,7 +14,12 @@ const app: Application = express()
  * Security Middleware
  */
 // Helmet helps secure Express apps by setting various HTTP headers
-app.use(helmet())
+// In non-production, disable contentSecurityPolicy and crossOriginOpenerPolicy
+// to avoid HTTPS enforcement that breaks HTTP-only deployments
+app.use(helmet({
+  contentSecurityPolicy: config.nodeEnv === 'production',
+  crossOriginOpenerPolicy: config.nodeEnv === 'production',
+}))
 
 /**
  * CORS Configuration
