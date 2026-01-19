@@ -20,8 +20,6 @@ export const initializeDatabase = (): Pool => {
     password: config.db.password,
     ssl: config.db.ssl,
     max: 20, // maximum number of clients in the pool
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000
   })
 
   pool.on('error', (err: Error) => {

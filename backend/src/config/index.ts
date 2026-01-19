@@ -33,7 +33,7 @@ const getConfig = (): AppConfig => {
       maxRequests: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100', 10)
     },
     cors: {
-      origin: [process.env.CORS_ORIGIN || 'http://localhost:5173', 'http://localhost:8080']
+      origin: [process.env.CORS_ORIGIN || 'http://3.75.198.63:3001', 'http://localhost:8080', 'http://3.75.198.63:3001']
     },
     dbSchema: process.env.DB_SCHEMA || 'test_scheme'
   }
