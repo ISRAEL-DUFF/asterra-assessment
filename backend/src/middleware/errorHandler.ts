@@ -2,10 +2,6 @@ import { Request, Response, NextFunction } from 'express'
 import { sendError } from '../utils'
 import logger from '../utils/logger'
 
-/**
- * Global error handler middleware
- * Should be registered last in the middleware chain
- */
 export const errorHandler = (
   err: any,
   req: Request,
@@ -40,9 +36,6 @@ export const errorHandler = (
   return sendError(res, message, statusCode)
 }
 
-/**
- * 404 handler - catch undefined routes
- */
 export const notFoundHandler = (req: Request, res: Response): Response => {
   return sendError(res, `Route ${req.method} ${req.path} not found`, 404)
 }

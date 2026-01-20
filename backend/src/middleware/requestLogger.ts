@@ -1,10 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import logger from '../utils/logger'
 
-/**
- * Request logging middleware
- * Logs incoming requests and response status
- */
 export const requestLogger = (req: Request, res: Response, next: NextFunction): void => {
   const startTime = Date.now()
 

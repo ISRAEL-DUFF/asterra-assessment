@@ -21,7 +21,6 @@ def map_csv(csv_file_path):
     with open(csv_file_path, 'r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         
-        # Check if SID column exists
         if 'SID' not in reader.fieldnames:
             raise ValueError("CSV file must contain 'SID' column")
         
@@ -30,20 +29,16 @@ def map_csv(csv_file_path):
             typed_row = {}
             
             for key, value in row.items():
-                # Skip empty values
                 if value == '':
                     typed_row[key] = value
                     continue
                 
-                # Try to convert to number (int or float)
                 try:
-                    # Check if it's an integer
                     if '.' not in value:
                         typed_row[key] = int(value)
                     else:
                         typed_row[key] = float(value)
                 except (ValueError, AttributeError):
-                    # Keep as string if conversion fails
                     typed_row[key] = value
             
             result_map[sid] = typed_row
@@ -131,29 +126,14 @@ def map_students_by_netid(json_file_path: str) -> dict:
 
 
 def json_obj_to_csv(json_obj, csv_file_path):
-    """
-    Converts JSON data object to CSV and writes it to a file.
-    
-    Args:
-        json_obj (dict or list): The input JSON object
-        csv_file_path (str): Path to the output CSV file
-        
-    Returns:
-        int: Number of rows written to CSV
-        
-    Raises:
-        ValueError: If JSON is not a list of objects or is empty
-    """
     data = json_obj
     
-    # Validate data
     if not isinstance(data, list):
         data = [json_obj]
     
     if len(data) == 0:
         raise ValueError("JSON data is empty")
     
-    # Extract all unique keys from all objects (in case objects have different keys)
     all_keys = set()
     for item in data:
         if isinstance(item, dict):
@@ -161,10 +141,8 @@ def json_obj_to_csv(json_obj, csv_file_path):
         else:
             raise ValueError("All items in JSON list must be objects (dictionaries)")
     
-    # Sort keys for consistent column order
-    fieldnames = ["Student Name", "ID Number", "Final Grade"] # sorted(all_keys)
+    fieldnames = ["Student Name", "ID Number", "Final Grade"]
     
-    # Write to CSV
     with open(csv_file_path, 'w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
@@ -175,7 +153,6 @@ def json_obj_to_csv(json_obj, csv_file_path):
 
 
 
-# Entry point:
 if __name__ == "__main__":
 
     group_scores = map_students_by_netid('data/students.json')

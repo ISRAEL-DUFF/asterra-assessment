@@ -4,9 +4,6 @@ import { logger } from '../utils'
 
 let pool: Pool | null = null
 
-/**
- * Initialize database connection pool
- */
 export const initializeDatabase = (): Pool => {
   if (pool) {
     return pool
@@ -30,9 +27,6 @@ export const initializeDatabase = (): Pool => {
   return pool
 }
 
-/**
- * Get a client from the pool
- */
 export const getClient = async (): Promise<PoolClient> => {
   if (!pool) {
     throw new Error('Database pool not initialized')
@@ -46,9 +40,6 @@ export const getClient = async (): Promise<PoolClient> => {
   }
 }
 
-/**
- * Query helper
- */
 export const query = async (text: string, params?: any[]): Promise<any> => {
   const client = await getClient()
   try {
@@ -58,9 +49,6 @@ export const query = async (text: string, params?: any[]): Promise<any> => {
   }
 }
 
-/**
- * Close database pool
- */
 export const closeDatabase = async (): Promise<void> => {
   if (pool) {
     await pool.end()

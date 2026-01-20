@@ -1,9 +1,6 @@
 import { Request, Response } from 'express'
 import { ApiResponse, ApiError } from '../types'
 
-/**
- * Send successful response
- */
 export const sendSuccess = <T>(
   res: Response,
   data: T,
@@ -20,9 +17,6 @@ export const sendSuccess = <T>(
   return res.status(statusCode).json(response)
 }
 
-/**
- * Send error response
- */
 export const sendError = (
   res: Response,
   error: string,
@@ -39,18 +33,12 @@ export const sendError = (
   return res.status(statusCode).json(response)
 }
 
-/**
- * Async route handler wrapper to catch errors
- */
 export const asyncHandler = (fn: Function) => {
   return (req: Request, res: Response, next: (error: any) => void) => {
     Promise.resolve(fn(req, res, next)).catch(next)
   }
 }
 
-/**
- * Validate request data against schema
- */
 export const validateRequest = async (data: any, schema: any): Promise<{ valid: boolean; errors?: any }> => {
   try {
     await schema.validateAsync(data, { abortEarly: false })

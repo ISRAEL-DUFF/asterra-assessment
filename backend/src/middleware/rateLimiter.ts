@@ -2,10 +2,6 @@ import rateLimit from 'express-rate-limit'
 import config from '../config'
 import logger from '../utils/logger'
 
-/**
- * General API rate limiter
- * Applies to all /api/* routes
- */
 export const apiLimiter = rateLimit({
   windowMs: config.rateLimiting.windowMs,
   max: config.rateLimiting.maxRequests,
@@ -27,10 +23,6 @@ export const apiLimiter = rateLimit({
   }
 })
 
-/**
- * Strict rate limiter for authentication endpoints
- * Applies to sensitive operations
- */
 export const strictLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // 5 requests per window

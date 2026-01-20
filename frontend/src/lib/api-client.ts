@@ -1,9 +1,6 @@
 import { API_URL } from '@/config/api';
 import type { ApiError, ApiResponse } from '@/types/user';
 
-/**
- * Generic API client with proper error handling
- */
 class ApiClient {
   private baseUrl: string;
 

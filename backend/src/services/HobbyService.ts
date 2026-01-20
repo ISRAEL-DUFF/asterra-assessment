@@ -4,9 +4,6 @@ import { Hobby, CreateHobbyRequest } from '../types'
 import logger from '../utils/logger'
 
 class HobbyService {
-  /**
-   * Create new hobby for a user
-   */
   async createHobby(data: CreateHobbyRequest): Promise<Hobby> {
     try {
       const { user_id, hobbies } = data
@@ -37,9 +34,6 @@ class HobbyService {
     }
   }
 
-  /**
-   * Delete hobby by user_id and hobby name
-   */
   async deleteHobby(userId: number, hobby: string): Promise<boolean> {
     try {
       const result = await query(
@@ -60,9 +54,6 @@ class HobbyService {
     }
   }
 
-  /**
-   * Get hobbies for a user
-   */
   async getUserHobbies(userId: number): Promise<Hobby[]> {
     try {
       const result = await query(

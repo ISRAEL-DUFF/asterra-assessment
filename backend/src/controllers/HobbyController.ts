@@ -5,10 +5,6 @@ import { createHobbySchema } from '../utils/validation'
 import { CreateHobbyRequest } from '../types'
 
 class HobbyController {
-  /**
-   * POST /api/hobbies
-   * Create new hobby for a user
-   */
   createHobby = asyncHandler(async (req: Request, res: Response) => {
     const { valid, errors } = await validateRequest(req.body, createHobbySchema)
 
@@ -20,10 +16,6 @@ class HobbyController {
     return sendSuccess(res, hobby, 201, 'Hobby created successfully')
   })
 
-  /**
-   * DELETE /api/hobbies/:userId/:hobby
-   * Delete hobby for a user
-   */
   deleteHobby = asyncHandler(async (req: Request, res: Response) => {
     const { userId, hobby } = req.params
     const decodedHobby = decodeURIComponent(hobby)
@@ -37,10 +29,6 @@ class HobbyController {
     return sendSuccess(res, { userId, hobby: decodedHobby }, 200, 'Hobby deleted successfully')
   })
 
-  /**
-   * GET /api/users/:userId/hobbies
-   * Get hobbies for a specific user
-   */
   getUserHobbies = asyncHandler(async (req: Request, res: Response) => {
     const { userId } = req.params
     const hobbies = await HobbyService.getUserHobbies(parseInt(userId, 10))

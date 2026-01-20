@@ -10,9 +10,6 @@ export const userKeys = {
   withHobbies: () => [...userKeys.all, 'with-hobbies'] as const,
 };
 
-/**
- * Hook to fetch all users
- */
 export function useUsers() {
   const { toast } = useToast();
 
@@ -33,9 +30,6 @@ export function useUsers() {
   });
 }
 
-/**
- * Hook to fetch users with their hobbies
- */
 export function useUsersWithHobbies() {
   const { toast } = useToast();
 
@@ -56,9 +50,6 @@ export function useUsersWithHobbies() {
   });
 }
 
-/**
- * Hook to create a new user
- */
 export function useCreateUser() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
@@ -88,9 +79,6 @@ export function useCreateUser() {
   });
 }
 
-/**
- * Hook to delete a user
- */
 export function useDeleteUser() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
@@ -119,9 +107,6 @@ export function useDeleteUser() {
   });
 }
 
-/**
- * Hook to create a hobby
- */
 export function useCreateHobby() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
@@ -150,9 +135,6 @@ export function useCreateHobby() {
   });
 }
 
-/**
- * Hook to delete a hobby
- */
 export function useDeleteHobby() {
   const queryClient = useQueryClient();
   const { toast } = useToast();

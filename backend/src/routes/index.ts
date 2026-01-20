@@ -4,9 +4,6 @@ import hobbyRoutes from './hobbyRoutes'
 
 const router = Router()
 
-/**
- * Health check endpoint
- */
 router.get('/health', (_: Request, res: Response) => {
   res.status(200).json({
     success: true,
@@ -15,9 +12,6 @@ router.get('/health', (_: Request, res: Response) => {
   })
 })
 
-/**
- * API routes
- */
 router.use('/users', userRoutes)
 router.use('/hobbies', hobbyRoutes)
 

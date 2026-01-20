@@ -1,8 +1,5 @@
 import { z } from 'zod';
 
-/**
- * User form validation schema
- */
 export const userFormSchema = z.object({
   first_name: z
     .string()
@@ -30,9 +27,6 @@ export const userFormSchema = z.object({
 
 export type UserFormData = z.infer<typeof userFormSchema>;
 
-/**
- * Hobby form validation schema
- */
 export const hobbyFormSchema = z.object({
   user_id: z
     .string()

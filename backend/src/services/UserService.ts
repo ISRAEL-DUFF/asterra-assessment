@@ -4,9 +4,6 @@ import { User, CreateUserRequest, UserWithHobbies } from '../types'
 import logger from '../utils/logger'
 
 class UserService {
-  /**
-   * Get all users
-   */
   async getAllUsers(): Promise<User[]> {
     try {
       const result = await query(
@@ -19,9 +16,6 @@ class UserService {
     }
   }
 
-  /**
-   * Get user by ID
-   */
   async getUserById(userId: number): Promise<User | null> {
     try {
       const result = await query(
@@ -35,9 +29,6 @@ class UserService {
     }
   }
 
-  /**
-   * Create new user
-   */
   async createUser(data: CreateUserRequest): Promise<User> {
     try {
       const { first_name, last_name, address, phone_number } = data
@@ -58,9 +49,6 @@ class UserService {
     }
   }
 
-  /**
-   * Delete user by ID (cascades to hobbies)
-   */
   async deleteUser(userId: number): Promise<boolean> {
     try {
       const result = await query(
@@ -80,9 +68,6 @@ class UserService {
     }
   }
 
-  /**
-   * Get users with their hobbies
-   */
   async getUsersWithHobbies(): Promise<UserWithHobbies[]> {
     try {
       const result = await query(
